@@ -57,8 +57,33 @@ public class Program {
 			// por padrão adiciona no fim da lista
 			list.add(emp);
 		}
+		System.out.println("########################");
+		System.out.println("Enter the employee id that will have salary increase: ");
+		int idSalary = sc.nextInt(); 
+		Integer pos = positionId(list, idSalary);
+		if (pos == null) {
+			System.out.println("This id does not exist!");
+		}
+		else {
+			System.out.print("Enter the porcentage: ");
+			double percent = sc.nextDouble();
+			//Pega acessar o funcionario que esta na posição (pos) 
+			// Então incrementa o salario com a porcentage
+			list.get(pos).increaseSalary(percent);
+		}
 		
+		sc.close();
 		
 	}
 
+	public static Integer positionId(List<Employee> list, int id) {
+		// size indica o tamanho da lista
+		for (int i = 0; i < list.size(); i++) {
+			// O get pega o elemento na posição
+			if (list.get(i).getId() == id) {
+				return i;
+			}
+		}
+		return null;
+	}
 }
